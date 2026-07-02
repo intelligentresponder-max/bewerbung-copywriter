@@ -1,368 +1,524 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lebenslauf – André Schwarz</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>André Schwarz — Lebenslauf / CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --ink:    #0f0f0f;
-      --paper:  #f5f2ed;
-      --copper: #b87333;
-      --mid:    #3a3530;
-      --muted:  #8a8480;
-      --border: #d8d3cc;
-    }
+  :root {
+    --black:   #0f0f0f;
+    --paper:   #f5f2ed;
+    --copper:  #b87333;
+    --copper-light: #d4924a;
+    --mid:     #6b6560;
+    --border:  #ddd8d1;
+  }
 
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
+  body {
+    background: var(--paper);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0;
-      background: rgba(245,242,237,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-      padding: 0 5vw;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 52px;
-    }
-    .nav-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--mid); }
-    .nav-back {
-      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none; color: var(--muted);
-      display: flex; align-items: center; gap: 0.4rem;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--copper); }
+  /* ── HEADER ── */
+  .cv-header {
+    background: var(--black);
+    color: var(--paper);
+    padding: 48px 64px 40px;
+  }
+  .cv-header-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 12px;
+  }
+  .cv-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .cv-header-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: #c0b8ae;
+    margin-bottom: 24px;
+  }
+  .cv-header-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    color: #a09890;
+  }
+  .cv-header-contacts a {
+    color: var(--copper-light);
+    text-decoration: none;
+  }
+  .cv-header-contacts a:hover { text-decoration: underline; }
 
-    /* ── HEADER ── */
-    .cv-header {
-      padding: 5rem 5vw 3rem;
-      border-bottom: 1px solid var(--border);
-      max-width: 860px;
-    }
-    .cv-header-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--copper); margin-bottom: 1rem;
-    }
-    .cv-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400; margin-bottom: 0.4rem;
-    }
-    .cv-header-role {
-      font-size: 1rem; color: var(--muted); margin-bottom: 1.5rem;
-    }
-    .cv-contact-row {
-      display: flex; flex-wrap: wrap; gap: 1.5rem;
-      font-size: 0.82rem; color: var(--mid);
-    }
-    .cv-contact-row a { color: var(--mid); text-decoration: none; }
-    .cv-contact-row a:hover { color: var(--copper); }
+  /* ── LAYOUT ── */
+  .cv-body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-    /* ── LAYOUT ── */
-    .cv-body {
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 0;
-      max-width: 1000px;
-    }
-    .cv-main { padding: 3.5rem 5vw 4rem; border-right: 1px solid var(--border); }
-    .cv-sidebar { padding: 3.5rem 2.5rem 4rem; }
+  /* ── MAIN COLUMN ── */
+  .cv-main {
+    padding: 48px 52px 64px 64px;
+    border-right: 1px solid var(--border);
+  }
 
-    /* ── BLOCK ── */
-    .cv-block { margin-bottom: 3.5rem; }
-    .cv-block-title {
-      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--copper); border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem; margin-bottom: 1.75rem;
-    }
+  .cv-section { margin-bottom: 44px; }
+  .cv-section:last-child { margin-bottom: 0; }
 
-    /* ── ENTRY ── */
-    .cv-entry { margin-bottom: 2.25rem; position: relative; padding-left: 1rem; }
-    .cv-entry::before {
-      content: '';
-      position: absolute; left: 0; top: 0.45rem;
-      width: 3px; height: calc(100% - 0.45rem);
-      background: var(--border);
-    }
-    .cv-entry:hover::before { background: var(--copper); transition: background 0.25s; }
-    .cv-entry-period {
-      font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
-      color: var(--copper); margin-bottom: 0.25rem;
-    }
-    .cv-entry h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; font-weight: 400;
-      color: var(--ink); margin-bottom: 0.15rem;
-    }
-    .cv-entry-org {
-      font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem;
-    }
-    .cv-entry p {
-      font-size: 0.87rem; color: var(--mid);
-    }
+  .cv-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
 
-    /* ── SIDEBAR ITEMS ── */
-    .cv-skill-block { margin-bottom: 2.5rem; }
-    .cv-skill-block h4 {
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--copper); border-bottom: 1px solid var(--border);
-      padding-bottom: 0.4rem; margin-bottom: 1rem;
-    }
-    .cv-skill-list { list-style: none; }
-    .cv-skill-list li {
-      font-size: 0.85rem; color: var(--mid);
-      padding: 0.3rem 0; border-bottom: 1px solid rgba(216,211,204,0.4);
-      display: flex; align-items: baseline; justify-content: space-between;
-      gap: 0.5rem;
-    }
-    .cv-skill-list li:last-child { border-bottom: none; }
-    .cv-skill-level {
-      font-size: 0.7rem; color: var(--muted); white-space: nowrap;
-    }
+  .cv-entry { margin-bottom: 28px; }
+  .cv-entry:last-child { margin-bottom: 0; }
 
-    /* ── PRINT ── */
-    @media print {
-      nav { display: none; }
-      .cv-body { display: block; }
-      .cv-sidebar { border-left: 1px solid var(--border); padding-top: 0; }
-    }
+  .cv-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 2px;
+  }
 
-    /* ── MOBILE ── */
-    @media (max-width: 680px) {
-      .cv-body { grid-template-columns: 1fr; }
-      .cv-main { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 5vw; }
-      .cv-sidebar { padding: 2rem 5vw; }
-    }
+  .cv-entry h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .cv-entry-date {
+    font-size: 12px;
+    color: var(--mid);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .cv-entry-org {
+    font-size: 13px;
+    color: var(--copper);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .cv-entry p {
+    font-size: 14px;
+    color: #3a3530;
+    line-height: 1.65;
+  }
+  .cv-entry ul {
+    padding-left: 16px;
+    font-size: 14px;
+    color: #3a3530;
+    line-height: 1.7;
+  }
+  .cv-entry ul li { margin-bottom: 3px; }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s, transform 0.6s; }
-    .reveal.visible { opacity: 1; transform: none; }
+  /* ── SIDEBAR ── */
+  .cv-sidebar {
+    padding: 48px 36px 64px;
+    background: #f0ece5;
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-  </style>
+  .cv-sidebar-section { margin-bottom: 36px; }
+  .cv-sidebar-section:last-child { margin-bottom: 0; }
+
+  .cv-sidebar-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd8d1;
+  }
+
+  .skill-item { margin-bottom: 12px; }
+  .skill-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .skill-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: var(--copper);
+    border-radius: 2px;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    color: #4a4540;
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .lang-name { font-weight: 500; }
+  .lang-level { color: var(--mid); font-size: 12px; }
+
+  /* ── NAV ── */
+  .cv-nav {
+    background: var(--black);
+    padding: 14px 64px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  .cv-nav a {
+    color: #a09890;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .cv-nav a:hover, .cv-nav a.active { color: var(--copper); }
+
+  /* ── FOOTER ── */
+  .cv-footer {
+    background: var(--black);
+    color: #6b6560;
+    text-align: center;
+    padding: 24px 64px;
+    font-size: 12px;
+  }
+  .cv-footer a { color: var(--copper); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .cv-header { padding: 32px 24px 28px; }
+    .cv-header h1 { font-size: 30px; }
+    .cv-body { grid-template-columns: 1fr; }
+    .cv-main { padding: 32px 24px; border-right: none; }
+    .cv-sidebar { padding: 32px 24px; }
+    .cv-nav { padding: 14px 24px; flex-wrap: wrap; gap: 16px; }
+    .cv-footer { padding: 20px 24px; }
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <span class="nav-name">André Schwarz</span>
-    <a href="index.html" class="nav-back">← Zurück zur Bewerbung</a>
-  </nav>
+<!-- NAV -->
+<nav class="cv-nav">
+  <a href="https://intelligentresponder-max.github.io/texter-portfolio/index.html">Start</a>
+  <a href="https://intelligentresponder-max.github.io/texter-portfolio/portfolio.html">Portfolio</a>
+  <a href="https://intelligentresponder-max.github.io/texter-portfolio/arbeitsproben.html">Arbeitsproben</a>
+  <a href="https://intelligentresponder-max.github.io/texter-portfolio/cv.html" class="active">Lebenslauf</a>
+</nav>
 
-  <div class="cv-header reveal">
-    <p class="cv-header-eyebrow">Copywriter · Frankfurt am Main · 2026</p>
-    <h1>André Schwarz</h1>
-    <p class="cv-header-role">Texter. Ghostwriter. Einer, der zuhört.</p>
-    <div class="cv-contact-row">
-      <span>Am Lausberg 8, 60435 Frankfurt am Main</span>
-      <a href="mailto:andre.schwarz1@t-online.de">andre.schwarz1@t-online.de</a>
-      <a href="tel:+4915256044541">01525 6044541</a>
-    </div>
+<!-- HEADER -->
+<header class="cv-header">
+  <p class="cv-header-eyebrow">Copywriter · Frankfurt am Main · 2026</p>
+  <h1>André Schwarz</h1>
+  <p class="cv-header-subtitle">Texter. Ghostwriter. Einer, der zuhört.</p>
+  <div class="cv-header-contacts">
+    <span>Am Lausberg 8, 60435 Frankfurt am Main</span>
+    <a href="mailto:andre.schwarz1@t-online.de">andre.schwarz1@t-online.de</a>
+    <a href="tel:+4915256044541">01525 6044541</a>
+    <a href="https://intelligentresponder-max.github.io/texter-portfolio/">Portfolio</a>
   </div>
+</header>
 
-  <div class="cv-body">
+<!-- BODY -->
+<div class="cv-body">
 
-    <!-- MAIN -->
-    <main class="cv-main">
+  <!-- MAIN -->
+  <main class="cv-main">
 
-      <!-- COPYWRITING -->
-      <div class="cv-block reveal">
-        <h2 class="cv-block-title">Copywriting &amp; Redaktion</h2>
+    <!-- COPYWRITING -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Copywriting &amp; Redaktion</h2>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">seit 2017</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Ghostwriter &amp; Copywriter</h3>
-          <p class="cv-entry-org">BFF Bürger für Frankfurt e.V. / Freie Wähler Frankfurt</p>
-          <p>Copy für die Frankfurter Stadtgesellschaft — politische Anträge für den Ortsbeirat 10, die bewegen, was bewegt werden muss. Darunter Antrag OF 232/10 (Verkehrsberuhigung Weinstraße): nach kurzer Prüfung bewilligt und innerhalb von 6 Monaten komplett zur Einbahnstraße umgewidmet. Federführende Fertigstellung des Kommunalwahlprogramms 2026.</p>
+          <span class="cv-entry-date">seit 2017</span>
         </div>
+        <p class="cv-entry-org">BFF Bürger für Frankfurt e.V. / Freie Wähler Frankfurt</p>
+        <p>Zur Politik kam ich wie die Jungfrau zum Kind — genötigt von Menschen, die erkannt hatten, dass ich Texte schreibe, die etwas bewegen. Geblieben bin ich, weil sie recht hatten.</p>
+        <ul>
+          <li>Politische Anträge für Ortsbeirat 10 — mehrheitlich beschlossen, u.&#8239;a. Verkehrsberuhigung Weinstraße (OF 232/10)</li>
+          <li>Federführende Fertigstellung des Kommunalwahlprogramms 2026</li>
+        </ul>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">seit ~2020</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Erfahrungen mit vertikaler Intelligenz</h3>
-          <p class="cv-entry-org">Verschiedene Projekte · Frankfurt am Main</p>
-          <p>Sales Copy, Landingpages, mehrsprachiges Willkommensbuch (Hospitality, 13 Sprachen), Ökostrom-Texte, Skripte für mentales Training, Konzept- und Webprojekte. Dahinter stehen echte Menschen — und der feste Vorsatz, die finale Umsetzung nicht mehr schuldig zu bleiben.</p>
+          <span class="cv-entry-date">seit ~2020</span>
         </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">2017 – 2021</p>
-          <h3>Fraktionsmitarbeiter im Römer (Nebentätigkeit)</h3>
-          <p class="cv-entry-org">BFF Bürger für Frankfurt e.V., Frankfurt am Main</p>
-          <p>Zur Politik kam ich wie die Jungfrau zum Kind — genötigt von Menschen, die erkannt hatten, dass ich Texte schreibe, die etwas bewegen. Geblieben bin ich, weil sie recht hatten.</p>
-        </div>
+        <p class="cv-entry-org">ASGlobal · Frankfurt am Main</p>
+        <p>Echte Projekte mit echten Menschen: Sales Copy, Landingpages, mehrsprachiges Willkommensbuch (Hospitality), Ökostrom-Texte, Skripte für mentales Training, Konzept- und Webprojekte — alle live, alle mit realen Empfängern.</p>
       </div>
 
-      <!-- BERUF -->
-      <div class="cv-block reveal">
-        <h2 class="cv-block-title">Berufserfahrung</h2>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Fraktionsmitarbeiter im Römer</h3>
+          <span class="cv-entry-date">2017 – 2021</span>
+        </div>
+        <p class="cv-entry-org">BFF Bürger für Frankfurt e.V. · Nebentätigkeit</p>
+        <p>Teilnahme an der Stadtverordnetenversammlung und Ortsbeiratssitzungen; politische Anträge für Werner Rudloff und Andreas Göhler.</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">seit 05/2022</p>
+    </section>
+
+    <!-- BERUFSERFAHRUNG -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Berufserfahrung</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Front Office Agent</h3>
-          <p class="cv-entry-org">Turmhotel Frankfurt</p>
-          <p>Multitasking und multilinguale Kommunikation; Mitwirkung an der Digitalisierung des Hauses, Optimierung der Abläufe.</p>
+          <span class="cv-entry-date">seit 05/2022</span>
         </div>
+        <p class="cv-entry-org">Turmhotel Frankfurt</p>
+        <p>Multitasking und multilinguale Kommunikation; Mitwirkung an der Digitalisierung des Hauses, Optimierung der Abläufe.</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">07/2019 – 06/2021</p>
-          <h3>Baustellensicherung</h3>
-          <p class="cv-entry-org">LAWS Sicherheitsdienst (Auftraggeber: BIEN-RIES GmbH, heute BUWOG)</p>
-          <p>Sicherung zweier Neubauprojekte (Riedberg und Hausen, Frankfurt); Verkehrslenkung, Ansprechpartner für die Bauleitung.</p>
-        </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">06/2017 – 06/2019</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Sachbearbeiter</h3>
-          <p class="cv-entry-org">GWR Griesheim – Recyclingzentrum Frankfurt</p>
-          <p>Telefonische Auftragsannahme, LKW-Disposition, Planung von Wohnungsauflösungen; freiwilliger Außendienst bei Personalengpässen.</p>
+          <span class="cv-entry-date">02/2016 – 05/2017</span>
         </div>
+        <p class="cv-entry-org">UPGRADE.EU · Frankfurt am Main</p>
+        <p>Erstellung individueller MPU-Vorbereitungsskripte (psychologische Vorbereitung per passgenauer Textbausteine); Erste-Hilfe-Kurse und betriebliche Ersthelfer-Schulungen deutschlandweit.</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">02/2016 – 05/2017</p>
-          <h3>Sachbearbeiter &amp; Erste-Hilfe-Ausbilder</h3>
-          <p class="cv-entry-org">UPGRADE.EU, Frankfurt am Main</p>
-          <p>Erstellung individueller MPU-Vorbereitungsskripte (psychologische Textvorbereitung); Durchführung von Erste-Hilfe-Kursen deutschlandweit.</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Sachbearbeiter</h3>
+          <span class="cv-entry-date">06/2017 – 06/2019</span>
         </div>
+        <p class="cv-entry-org">GWR Griesheim – Recyclingzentrum Frankfurt</p>
+        <p>Telefonische Auftragsannahme, LKW-Disposition, Planung von Wohnungsauflösungen; freiwilliger Außendienst bei Personalengpässen.</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">01/2014 – 12/2015</p>
-          <h3>Auslieferungsfahrer</h3>
-          <p class="cv-entry-org">Bäckerei Traber Beck, Kronach</p>
-          <p>Liefer- und Verkaufstouren durch Franken- und Thüringer Wald; Aufbau von Kundenbeziehungen.</p>
-        </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">01/2009 – 12/2013</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Kundenberatung &amp; Fahrschülerbetreuung</h3>
-          <p class="cv-entry-org">Scout-Logic / Intensivfahrschule Rhein-Main</p>
-          <p>Selbstständige Kundenakquise; Bevollmächtigter des Fahrschulleiters; Erstellung einer Moodle-Lernplattform als digitale Neufassung des Lehrbuchs; Shuttle-Service Frankfurt–Karlovy Vary.</p>
+          <span class="cv-entry-date">01/2009 – 12/2013</span>
         </div>
+        <p class="cv-entry-org">Scout-Logic / Intensivfahrschule Rhein-Main · Frankfurt · Karlovy Vary</p>
+        <p>Selbstständige Kundenakquise, Telefon-Beratung; Bevollmächtigter des Fahrschulleiters; Erstellung einer Moodle-Lernplattform als digitale Neufassung des Lehrbuchs; Shuttle-Service Frankfurt–Karlovy Vary.</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">2002 – 01/2009</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Produktion &amp; Sachbearbeitung</h3>
-          <p class="cv-entry-org">Valeo Automotive GmbH, Kronach</p>
-          <p>Fertigung im Wischer- und Leuchtenwerk; vertretungsweise Sachbearbeitung im Versandbüro.</p>
+          <span class="cv-entry-date">2002 – 01/2009</span>
         </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">2000 – 2002</p>
-          <h3>Pfortendienst / Werkschutz</h3>
-          <p class="cv-entry-org">Sicherheit &amp; Service, Kronach-Weißenbrunn</p>
-          <p>Pfortendienst in der Hochsicherheitszentrale von British American Tobacco (BAT).</p>
-        </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">02/1999 – 02/2002</p>
-          <h3>Vermögensberater-Assistent (nebenberuflich, selbstständig)</h3>
-          <p class="cv-entry-org">Deutsche Vermögensberatung AG (DVAG)</p>
-        </div>
-
-        <div class="cv-entry">
-          <p class="cv-entry-period">11/1997 – 08/1998</p>
-          <h3>Sanitätssoldat (Wehrdienst)</h3>
-          <p class="cv-entry-org">4. Gemischtes Lazarettregiment 12, Mitterharthausen bei Straubing</p>
-        </div>
+        <p class="cv-entry-org">Valeo Automotive GmbH · Kronach</p>
+        <p>Fertigung im Wischer- und Leuchtenwerk; vertretungsweise Sachbearbeitung im Versandbüro.</p>
       </div>
 
-      <!-- BILDUNG -->
-      <div class="cv-block reveal">
-        <h2 class="cv-block-title">Bildung &amp; Qualifikationen</h2>
+    </section>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">1998 – 2000</p>
+    <!-- AUSBILDUNG -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Ausbildung &amp; Weiterbildung</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Cambridge Certificate in Advanced English (CAE, C1)</h3>
-          <p class="cv-entry-org">Fernstudium ILS · Abschluss Oxford School of English, München</p>
+          <span class="cv-entry-date">1998 – 2000</span>
         </div>
+        <p class="cv-entry-org">Fernstudium ILS · Abschluss Oxford School of English, München</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">2000 – 2002</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Ausbildung zur Werkschutzfachkraft</h3>
-          <p class="cv-entry-org">Sicherheit &amp; Service, Kronach-Weißenbrunn</p>
+          <span class="cv-entry-date">2000 – 2002</span>
         </div>
+        <p class="cv-entry-org">Sicherheit &amp; Service · Kronach-Weißenbrunn</p>
+      </div>
 
-        <div class="cv-entry">
-          <p class="cv-entry-period">05/1997</p>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
           <h3>Abitur</h3>
-          <p class="cv-entry-org">Frankenwald-Gymnasium, Kronach</p>
+          <span class="cv-entry-date">05/1997</span>
         </div>
+        <p class="cv-entry-org">Frankenwald-Gymnasium · Kronach</p>
       </div>
 
-    </main>
-
-    <!-- SIDEBAR -->
-    <aside class="cv-sidebar">
-
-      <div class="cv-skill-block reveal">
-        <h4>Sprachen</h4>
-        <ul class="cv-skill-list">
-          <li>Deutsch <span class="cv-skill-level">Muttersprache</span></li>
-          <li>Englisch <span class="cv-skill-level">C1 · Cambridge CAE</span></li>
-          <li>Französisch <span class="cv-skill-level">Grundkenntnisse</span></li>
-        </ul>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Selbststudium Direct Response Copywriting</h3>
+          <span class="cv-entry-date">2020 – heute</span>
+        </div>
+        <p class="cv-entry-org">Autodidaktisch</p>
+        <p>Gary Halbert, Eugene Schwartz, Claude Hopkins — klassische Schule. NLS-Sprachmuster (Marc Galal), mathematische Entscheidungslogik. Alles selbst angewendet, nicht nur gelesen.</p>
       </div>
 
-      <div class="cv-skill-block reveal">
-        <h4>Digital</h4>
-        <ul class="cv-skill-list">
-          <li>KI-Tools <span class="cv-skill-level">autodidaktisch</span></li>
-          <li>GitHub</li>
-          <li>Termux</li>
-          <li>Moodle</li>
-          <li>MS Office</li>
-        </ul>
+    </section>
+
+    <!-- AUSGEWÄHLTE PROJEKTE -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Ausgewählte Projekte</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Willkommensbuch Turmhotel Frankfurt</h3>
+          <span class="cv-entry-date">2024</span>
+        </div>
+        <p>30+ Sprachen, vollständige Hotel-Dokumentation — von Null auf Live in einer Session. Tone of Voice: warm, präzise, international.</p>
       </div>
 
-      <div class="cv-skill-block reveal">
-        <h4>Schreib-Nischen</h4>
-        <ul class="cv-skill-list">
-          <li>Sales Copy & Landingpages</li>
-          <li>Politisches Ghostwriting</li>
-          <li>Hospitality / Multilingual</li>
-          <li>Ökostrom / Green Energy</li>
-          <li>Mental Training / Hypnose</li>
-          <li>Tech-Produktpositionierung</li>
-          <li>Bilingual DE/Bengali</li>
-        </ul>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Kommunalwahlprogramm 2026</h3>
+          <span class="cv-entry-date">2025 – 2026</span>
+        </div>
+        <p>Federführende Fertigstellung des Wahlprogramms für Freie Wähler Frankfurt. Copy für die Frankfurter Stadtgesellschaft — alle Themen, eine Stimme.</p>
       </div>
 
-      <div class="cv-skill-block reveal">
-        <h4>Ehrenamt &amp; Sonstiges</h4>
-        <ul class="cv-skill-list">
-          <li>Erste-Hilfe-Ausbilder</li>
-          <li>Sanitätssoldat (BW)</li>
-          <li>Rettungsschwimmer (BRK)</li>
-          <li>Führerschein Klasse B</li>
-        </ul>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <h3>Bewerbungswebsite für Roman Mayer GmbH</h3>
+          <span class="cv-entry-date">2026</span>
+        </div>
+        <p>Diese Seite. Gebaut in einem Tag, deployed auf GitHub Pages. Copywriting, Konzept und technische Umsetzung — alles in einer Person.</p>
       </div>
 
-    </aside>
+    </section>
 
-  </div>
+  </main>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+  <!-- SIDEBAR -->
+  <aside class="cv-sidebar">
+
+    <div class="cv-sidebar-section">
+      <h2 class="cv-sidebar-title">Kernkompetenzen</h2>
+      <div class="skill-item">
+        <div class="skill-label">Direct Response Copy</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Konzeption &amp; Struktur</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Ghostwriting</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">E-Mail-Marketing</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">Landingpages &amp; VSL</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label">KI-gestützter Workflow</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+    </div>
+
+    <div class="cv-sidebar-section">
+      <h2 class="cv-sidebar-title">Sprachen</h2>
+      <div class="lang-item">
+        <span class="lang-name">Deutsch</span>
+        <span class="lang-level">Muttersprache</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Englisch</span>
+        <span class="lang-level">C1 · Cambridge CAE</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Französisch</span>
+        <span class="lang-level">Grundkenntnisse</span>
+      </div>
+    </div>
+
+    <div class="cv-sidebar-section">
+      <h2 class="cv-sidebar-title">Tools &amp; Systeme</h2>
+      <div class="tag-list">
+        <span class="tag">Claude AI</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Termux</span>
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">Google Workspace</span>
+        <span class="tag">Moodle</span>
+        <span class="tag">Canva</span>
+        <span class="tag">WhatsApp Business</span>
+        <span class="tag">Telegram Bot</span>
+        <span class="tag">MS Office</span>
+      </div>
+    </div>
+
+    <div class="cv-sidebar-section">
+      <h2 class="cv-sidebar-title">Ehrenamt &amp; Erste Hilfe</h2>
+      <p style="font-size:13px; color:#4a4540; line-height:1.7;">
+        Ausgebildeter Erste-Hilfe-Ausbilder · Sanitätssoldat (Bundeswehr, 4. Gemischtes Lazarettregiment 12) · Rettungsschwimmer und Jugend-Ersthelfer bei der Wasserwacht des BRK
+      </p>
+    </div>
+
+    <div class="cv-sidebar-section">
+      <h2 class="cv-sidebar-title">Was ich mitbringe</h2>
+      <p style="font-size:13px; color:#4a4540; line-height:1.7;">
+        Seit 2017 schreibe ich unter echtem Druck — für Parlamente, Hotels, Märkte und Menschen. Kein Studium. Aber ein System, eine Haltung und die Ruhe, auch bei mehreren Deadlines klar zu bleiben.
+      </p>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="cv-footer">
+  <a href="https://intelligentresponder-max.github.io/texter-portfolio/">← Zurück zum Portfolio</a>
+  &nbsp;·&nbsp;
+  André Schwarz · Frankfurt am Main · 2026
+</footer>
 
 </body>
 </html>
