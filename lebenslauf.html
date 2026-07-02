@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lebenslauf – André Schwarz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0f0f0f;
+      --paper:  #f5f2ed;
+      --copper: #b87333;
+      --mid:    #3a3530;
+      --muted:  #8a8480;
+      --border: #d8d3cc;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0;
+      background: rgba(245,242,237,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--mid); }
+    .nav-back {
+      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; color: var(--muted);
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--copper); }
+
+    /* ── HEADER ── */
+    .cv-header {
+      padding: 5rem 5vw 3rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 860px;
+    }
+    .cv-header-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--copper); margin-bottom: 1rem;
+    }
+    .cv-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; margin-bottom: 0.4rem;
+    }
+    .cv-header-role {
+      font-size: 1rem; color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .cv-contact-row {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      font-size: 0.82rem; color: var(--mid);
+    }
+    .cv-contact-row a { color: var(--mid); text-decoration: none; }
+    .cv-contact-row a:hover { color: var(--copper); }
+
+    /* ── LAYOUT ── */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 0;
+      max-width: 1000px;
+    }
+    .cv-main { padding: 3.5rem 5vw 4rem; border-right: 1px solid var(--border); }
+    .cv-sidebar { padding: 3.5rem 2.5rem 4rem; }
+
+    /* ── BLOCK ── */
+    .cv-block { margin-bottom: 3.5rem; }
+    .cv-block-title {
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--copper); border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem; margin-bottom: 1.75rem;
+    }
+
+    /* ── ENTRY ── */
+    .cv-entry { margin-bottom: 2.25rem; position: relative; padding-left: 1rem; }
+    .cv-entry::before {
+      content: '';
+      position: absolute; left: 0; top: 0.45rem;
+      width: 3px; height: calc(100% - 0.45rem);
+      background: var(--border);
+    }
+    .cv-entry:hover::before { background: var(--copper); transition: background 0.25s; }
+    .cv-entry-period {
+      font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--copper); margin-bottom: 0.25rem;
+    }
+    .cv-entry h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 0.15rem;
+    }
+    .cv-entry-org {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .cv-entry p {
+      font-size: 0.87rem; color: var(--mid);
+    }
+
+    /* ── SIDEBAR ITEMS ── */
+    .cv-skill-block { margin-bottom: 2.5rem; }
+    .cv-skill-block h4 {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--copper); border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem; margin-bottom: 1rem;
+    }
+    .cv-skill-list { list-style: none; }
+    .cv-skill-list li {
+      font-size: 0.85rem; color: var(--mid);
+      padding: 0.3rem 0; border-bottom: 1px solid rgba(216,211,204,0.4);
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .cv-skill-list li:last-child { border-bottom: none; }
+    .cv-skill-level {
+      font-size: 0.7rem; color: var(--muted); white-space: nowrap;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      nav { display: none; }
+      .cv-body { display: block; }
+      .cv-sidebar { border-left: 1px solid var(--border); padding-top: 0; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 680px) {
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-main { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 5vw; }
+      .cv-sidebar { padding: 2rem 5vw; }
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s, transform 0.6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">André Schwarz</span>
+    <a href="index.html" class="nav-back">← Zurück zur Bewerbung</a>
+  </nav>
+
+  <div class="cv-header reveal">
+    <p class="cv-header-eyebrow">Lebenslauf · Bewerbung Roman Mayer GmbH · 2. Juli 2026</p>
+    <h1>André Schwarz</h1>
+    <p class="cv-header-role">Copywriter · Texter · Ghostwriter</p>
+    <div class="cv-contact-row">
+      <span>Am Lausberg 8, 60435 Frankfurt am Main</span>
+      <a href="mailto:andre.schwarz1@t-online.de">andre.schwarz1@t-online.de</a>
+      <a href="tel:+4915256044541">01525 6044541</a>
+    </div>
+  </div>
+
+  <div class="cv-body">
+
+    <!-- MAIN -->
+    <main class="cv-main">
+
+      <!-- COPYWRITING -->
+      <div class="cv-block reveal">
+        <h2 class="cv-block-title">Copywriting &amp; Redaktion</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">seit 2017</p>
+          <h3>Ghostwriter &amp; Copywriter</h3>
+          <p class="cv-entry-org">BFF Bürger für Frankfurt e.V. / Freie Wähler Frankfurt</p>
+          <p>Verfassen politischer Anträge für den Ortsbeirat 10 — mehrheitlich beschlossen. Darunter Antrag OF 232/10 (Verkehrsberuhigung Weinstraße, Einbahnstraße, umgesetzt durch die Stadt Frankfurt). Federführende Fertigstellung des Kommunalwahlprogramms 2026.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">seit ~2020</p>
+          <h3>Freiberuflicher Copywriter</h3>
+          <p class="cv-entry-org">ASGlobal, Frankfurt am Main</p>
+          <p>Sales Copy, Landingpages, mehrsprachiges Willkommensbuch (Hospitality, 13 Sprachen), Ökostrom-Texte, Skripte für mentales Training, Konzept- und Webprojekte.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">2017 – 2021</p>
+          <h3>Fraktionsmitarbeiter im Römer (Nebentätigkeit)</h3>
+          <p class="cv-entry-org">BFF Bürger für Frankfurt e.V., Frankfurt am Main</p>
+          <p>Teilnahme an Stadtverordnetenversammlung und Ortsbeiratssitzungen; Verfassen politischer Anträge für die Ortsbeiräte Werner Rudloff und Andreas Göhler.</p>
+        </div>
+      </div>
+
+      <!-- BERUF -->
+      <div class="cv-block reveal">
+        <h2 class="cv-block-title">Berufserfahrung</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">seit 05/2022</p>
+          <h3>Empfangsmitarbeiter</h3>
+          <p class="cv-entry-org">Turmhotel Frankfurt</p>
+          <p>Gästeempfang, Rezeption, mehrsprachige Kommunikation; Mitwirkung an der Digitalisierung des Hauses.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">07/2019 – 06/2021</p>
+          <h3>Baustellensicherung</h3>
+          <p class="cv-entry-org">LAWS Sicherheitsdienst (Auftraggeber: BIEN-RIES GmbH, heute BUWOG)</p>
+          <p>Sicherung zweier Neubauprojekte (Riedberg und Hausen, Frankfurt); Verkehrslenkung, Ansprechpartner für die Bauleitung.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">06/2017 – 06/2019</p>
+          <h3>Sachbearbeiter</h3>
+          <p class="cv-entry-org">GWR Griesheim – Recyclingzentrum Frankfurt</p>
+          <p>Telefonische Auftragsannahme, LKW-Disposition, Planung von Wohnungsauflösungen; freiwilliger Außendienst bei Personalengpässen.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">02/2016 – 05/2017</p>
+          <h3>Sachbearbeiter &amp; Erste-Hilfe-Ausbilder</h3>
+          <p class="cv-entry-org">UPGRADE.EU, Frankfurt am Main</p>
+          <p>Erstellung individueller MPU-Vorbereitungsskripte (psychologische Textvorbereitung); Durchführung von Erste-Hilfe-Kursen deutschlandweit.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">01/2014 – 12/2015</p>
+          <h3>Auslieferungsfahrer</h3>
+          <p class="cv-entry-org">Bäckerei Traber Beck, Kronach</p>
+          <p>Liefer- und Verkaufstouren durch Franken- und Thüringer Wald; Aufbau von Kundenbeziehungen.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">01/2009 – 12/2013</p>
+          <h3>Kundenberatung &amp; Fahrschülerbetreuung</h3>
+          <p class="cv-entry-org">Scout-Logic / Intensivfahrschule Rhein-Main</p>
+          <p>Selbstständige Kundenakquise; Bevollmächtigter des Fahrschulleiters; Erstellung einer Moodle-Lernplattform als digitale Neufassung des Lehrbuchs; Shuttle-Service Frankfurt–Karlovy Vary.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">2002 – 01/2009</p>
+          <h3>Produktion &amp; Sachbearbeitung</h3>
+          <p class="cv-entry-org">Valeo Automotive GmbH, Kronach</p>
+          <p>Fertigung im Wischer- und Leuchtenwerk; vertretungsweise Sachbearbeitung im Versandbüro.</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">2000 – 2002</p>
+          <h3>Pfortendienst / Werkschutz</h3>
+          <p class="cv-entry-org">Sicherheit &amp; Service, Kronach-Weißenbrunn</p>
+          <p>Pfortendienst in der Hochsicherheitszentrale von British American Tobacco (BAT).</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">02/1999 – 02/2002</p>
+          <h3>Vermögensberater-Assistent (nebenberuflich, selbstständig)</h3>
+          <p class="cv-entry-org">Deutsche Vermögensberatung AG (DVAG)</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">11/1997 – 08/1998</p>
+          <h3>Sanitätssoldat (Wehrdienst)</h3>
+          <p class="cv-entry-org">4. Gemischtes Lazarettregiment 12, Mitterharthausen bei Straubing</p>
+        </div>
+      </div>
+
+      <!-- BILDUNG -->
+      <div class="cv-block reveal">
+        <h2 class="cv-block-title">Bildung &amp; Qualifikationen</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">1998 – 2000</p>
+          <h3>Cambridge Certificate in Advanced English (CAE, C1)</h3>
+          <p class="cv-entry-org">Fernstudium ILS · Abschluss Oxford School of English, München</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">2000 – 2002</p>
+          <h3>Ausbildung zur Werkschutzfachkraft</h3>
+          <p class="cv-entry-org">Sicherheit &amp; Service, Kronach-Weißenbrunn</p>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry-period">05/1997</p>
+          <h3>Abitur</h3>
+          <p class="cv-entry-org">Frankenwald-Gymnasium, Kronach</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="cv-sidebar">
+
+      <div class="cv-skill-block reveal">
+        <h4>Sprachen</h4>
+        <ul class="cv-skill-list">
+          <li>Deutsch <span class="cv-skill-level">Muttersprache</span></li>
+          <li>Englisch <span class="cv-skill-level">C1 · Cambridge CAE</span></li>
+          <li>Französisch <span class="cv-skill-level">Grundkenntnisse</span></li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block reveal">
+        <h4>Digital</h4>
+        <ul class="cv-skill-list">
+          <li>KI-Tools <span class="cv-skill-level">autodidaktisch</span></li>
+          <li>GitHub</li>
+          <li>Termux</li>
+          <li>Moodle</li>
+          <li>MS Office</li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block reveal">
+        <h4>Schreib-Nischen</h4>
+        <ul class="cv-skill-list">
+          <li>Sales Copy & Landingpages</li>
+          <li>Politisches Ghostwriting</li>
+          <li>Hospitality / Multilingual</li>
+          <li>Ökostrom / Green Energy</li>
+          <li>Mental Training / Hypnose</li>
+          <li>Tech-Produktpositionierung</li>
+          <li>Bilingual DE/Bengali</li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block reveal">
+        <h4>Ehrenamt &amp; Sonstiges</h4>
+        <ul class="cv-skill-list">
+          <li>Erste-Hilfe-Ausbilder</li>
+          <li>Sanitätssoldat (BW)</li>
+          <li>Rettungsschwimmer (BRK)</li>
+          <li>Führerschein Klasse B</li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

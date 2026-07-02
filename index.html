@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>André Schwarz – Copywriter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0f0f0f;
+      --paper:   #f5f2ed;
+      --copper:  #b87333;
+      --mid:     #3a3530;
+      --muted:   #8a8480;
+      --border:  #d8d3cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(245,242,237,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--mid);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.8rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--copper); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 5vw 4rem;
+      max-width: 860px;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--copper); margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.25;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--copper);
+    }
+    /* typewriter cursor */
+    .cursor {
+      display: inline-block;
+      width: 2px; height: 0.9em;
+      background: var(--copper);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-nutshell {
+      max-width: 560px;
+      font-size: 1.05rem; color: var(--mid);
+      border-left: 2px solid var(--copper);
+      padding-left: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      background: var(--ink); color: var(--paper);
+      padding: 0.85rem 2rem;
+      font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--copper); transform: translateY(-1px); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 5vw;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .hero-scroll::before {
+      content: '';
+      display: block; width: 32px; height: 1px; background: var(--muted);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 6rem 5vw; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--copper); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400; line-height: 1.3;
+      max-width: 600px; margin-bottom: 3rem;
+    }
+    hr.divider {
+      border: none; border-top: 1px solid var(--border); margin: 0;
+    }
+
+    /* ── PORTFOLIO CARDS ── */
+    .cards { display: grid; gap: 1px; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0%;
+      background: var(--copper);
+      transition: height 0.35s ease;
+    }
+    .card:hover::before { height: 100%; }
+    .card:hover { border-color: var(--copper); transform: translateX(4px); }
+    .card-tag {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.75rem;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 400;
+      margin-bottom: 0.75rem; color: var(--ink);
+    }
+    .card p { font-size: 0.9rem; color: var(--mid); max-width: 520px; }
+    .card-result {
+      margin-top: 1.25rem;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+      color: var(--copper);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .card-result::before {
+      content: '→';
+    }
+
+    /* ── FACTS STRIP ── */
+    .facts-section {
+      background: var(--ink); color: var(--paper);
+    }
+    .facts-section .section-label { color: var(--copper); }
+    .facts-section .section-title { color: var(--paper); }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .fact-item {}
+    .fact-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--copper); line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .fact-label {
+      font-size: 0.8rem; color: rgba(245,242,237,0.6);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ANSCHREIBEN PREVIEW ── */
+    .letter-section { background: var(--paper); }
+    .letter-card {
+      max-width: 680px;
+      border: 1px solid var(--border);
+      padding: 3rem 3.5rem;
+      background: #fff;
+      position: relative;
+    }
+    .letter-card::after {
+      content: 'Anschreiben';
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--border);
+    }
+    .letter-card p {
+      font-size: 0.92rem; color: var(--mid); margin-bottom: 1rem; line-height: 1.8;
+    }
+    .letter-card p:last-child { margin-bottom: 0; }
+    .letter-card strong { color: var(--ink); font-weight: 500; }
+    .letter-download {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 2rem;
+      text-decoration: none; color: var(--copper);
+      font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+      border-bottom: 1px solid var(--copper); padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .letter-download:hover { opacity: 0.65; }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      text-align: center; padding: 7rem 5vw;
+    }
+    .contact-section .section-title { margin: 1rem auto 0.5rem; }
+    .contact-section p { color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-links {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      text-decoration: none; color: var(--ink);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px; font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { color: var(--copper); border-color: var(--copper); }
+    .btn-primary {
+      display: inline-block;
+      background: var(--copper); color: var(--paper);
+      text-decoration: none; padding: 1rem 2.5rem;
+      font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: opacity 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ── CV LINK ── */
+    .cv-link-strip {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .cv-link-strip span { font-size: 0.82rem; color: var(--muted); }
+    .cv-link-strip a {
+      font-size: 0.82rem; text-decoration: none; color: var(--ink);
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border); padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cv-link-strip a:hover { color: var(--copper); border-color: var(--copper); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 5vw;
+      font-size: 0.75rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--copper); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.8rem; }
+      .letter-card { padding: 2rem 1.5rem; }
+      .facts-grid { gap: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .cursor { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">André Schwarz</span>
+    <ul class="nav-links">
+      <li><a href="#portfolio">Arbeiten</a></li>
+      <li><a href="#anschreiben">Anschreiben</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="lebenslauf.html">Lebenslauf</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="position:relative;">
+    <p class="hero-eyebrow">Bewerbung · Roman Mayer GmbH · Frankfurt 2026</p>
+    <h1 id="headline" aria-label="Ich kenne die Regeln nicht alle beim Namen. Aber ich fühle, wann ein Text hält — so wie dieser hier. Das bewusst zu machen, würde ich gern bei dir lernen."></h1>
+    <blockquote class="hero-nutshell reveal">
+      Ich schreibe in dem Moment gut, in dem ich aufhöre, an mich selbst zu denken — und anfange, wirklich zuzuhören, was die andere Seite braucht. Das Cambridge-Motto trifft es besser als jede Berufsbezeichnung: <em style="font-style:italic;color:var(--copper)">Hinc lucem et pocula sacra.</em> Von hier kommt das Licht.
+    </blockquote>
+    <a href="#kontakt" class="hero-cta">Lass uns reden</a>
+    <span class="hero-scroll">Scroll</span>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <p class="section-label reveal">Portfolio</p>
+    <h2 class="section-title reveal">Vier Projekte. Vier verschiedene Welten. Ein Handwerk.</h2>
+
+    <div class="cards">
+
+      <div class="card reveal">
+        <p class="card-tag">Politisches Ghostwriting · Frankfurt Ortsbeirat 10</p>
+        <h3>Der Antrag, der eine Straße verändert hat</h3>
+        <p>Die Anwohner der Weinstraße in Preungesheim litten seit Jahren. Die Politik vertagte. Ich habe neu angesetzt: den blinden Fleck gefunden, den alle übersehen hatten, und die Lösung formuliert, die auf der Hand lag. Eine Einbahnstraße. Der Antrag wurde beschlossen — und Frankfurt setzte ihn um.</p>
+        <p class="card-result">Antrag OF 232/10, einsehbar im PARLIS-System der Stadt Frankfurt</p>
+      </div>
+
+      <div class="card reveal">
+        <p class="card-tag">Multilinguales Willkommensbuch · Hospitality</p>
+        <h3>Willkommen in 13 Sprachen — vom Hotelrezeptionisten selbst</h3>
+        <p>Als Rezeptionsmitarbeiter im Turmhotel Frankfurt weiß ich, was Gäste in der ersten Stunde brauchen: echte Orientierung, keine Hochglanz-PR. Das Willkommensbuch, das ich verfasst und digitalisiert habe, spricht Gäste aus 13 Herkunftsländern direkt an — auf Augenhöhe und in ihrer Sprache.</p>
+        <p class="card-result">Eingesetzt im laufenden Hotelbetrieb, Turmhotel Frankfurt</p>
+      </div>
+
+      <div class="card reveal">
+        <p class="card-tag">Landingpage & Sales Copy · B2B/B2C</p>
+        <h3>Eine Website in fünf Stunden — von null auf einsatzbereit</h3>
+        <p>Für die Copy Code Agency habe ich bewiesen, dass ich mir auch neue Werkzeuge autodidaktisch beibringe: Zielgruppenanalyse, Struktur, Headline, CTA — alles in einem Sprint. Nicht weil es schnell sein musste, sondern weil ich wusste, was gebraucht wird.</p>
+        <p class="card-result">Live-Site, vollständig konzipiert und getextet von mir</p>
+      </div>
+
+      <div class="card reveal">
+        <p class="card-tag">SaaS Positioning · Tech-Produkt für Endnutzer</p>
+        <h3>Wie man ein komplexes System in eine klare Botschaft übersetzt</h3>
+        <p>CROWN v10 ist ein algorithmisches Value-Betting-System — voller Logik, Daten und Fachsprache. Meine Aufgabe: den Nutzen so formulieren, dass jemand ohne Vorwissen sofort versteht, was er gewinnt. Nicht erklären, was das Produkt kann. Zeigen, was es für den Menschen bedeutet.</p>
+        <p class="card-result">Produktpositionierung & Sales-Copy für kommerziellen Launch</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FACTS -->
+  <section id="facts" class="facts-section">
+    <p class="section-label">Eckdaten</p>
+    <h2 class="section-title">Was ich mitbringe.</h2>
+    <div class="facts-grid">
+      <div class="fact-item reveal">
+        <div class="fact-number">10+</div>
+        <div class="fact-label">Copywriting-Nischen, von Politik bis Hypnoseskript</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-number">C1</div>
+        <div class="fact-label">Cambridge CAE Englisch — Sprache als Werkzeug, nicht als Pflicht</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-number">4.500 €</div>
+        <div class="fact-label">Gehaltsvorstellung brutto, Homeoffice-Anteil erwünscht</div>
+      </div>
+      <div class="fact-item reveal">
+        <div class="fact-number">seit '17</div>
+        <div class="fact-label">Ghostwriting für politische Gremien — mehrheitlich beschlossen</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ANSCHREIBEN PREVIEW -->
+  <section id="anschreiben" class="letter-section">
+    <p class="section-label reveal">Anschreiben</p>
+    <h2 class="section-title reveal">In eigenen Worten, wie es sein soll.</h2>
+
+    <div class="letter-card reveal">
+      <p><strong>Hallo Roman,</strong></p>
+      <p>ein guter Text beginnt nicht mit dem Schreiben. Ein guter Text beginnt mit dem Zuhören.</p>
+      <p>Wer sitzt eigentlich alles auf der anderen Seite? Nicht nur der offensichtliche Empfänger, sondern jeder, der am Ende Ja oder Nein sagt. Ein Beispiel aus meiner langjährigen Arbeit als Ghostwriter für den Ortsbeirat 10 im Frankfurter Norden: Die Anwohner der Weinstraße in Preungesheim litten seit Jahren unter Abgasen, nächtlichem Lärm und gefährlichen Situationen. Statt auf festgefahrene Vorlagen aufzubauen, habe ich neu angesetzt und die Lösung formuliert, die die ganze Zeit auf der Hand lag. <strong>Text, der Fakten schafft.</strong></p>
+      <p>Genau darum geht es beim Schreiben: den blinden Fleck finden, den alle übersehen, und ihn so klar formulieren, dass am Ende ein Ja steht.</p>
+      <p>Als ich deine Seite gelesen habe, ist mir etwas aufgefallen: Du schreibst so, wie ich schreiben will. Kurz. Selbstbewusst. Kein Wort zu viel.</p>
+      <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--muted);">— André Schwarz, Frankfurt am Main</p>
+
+      <a href="Anschreiben_Andre_Schwarz_Roman_Mayer-2.pdf" class="letter-download" download>
+        Vollständiges Anschreiben als PDF ↓
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CV LINK STRIP -->
+  <div class="cv-link-strip">
+    <span>Vollständiger Werdegang</span>
+    <a href="lebenslauf.html">Lebenslauf ansehen →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact-section">
+    <p class="section-label">Kontakt</p>
+    <h2 class="section-title" style="margin:1rem auto 0.5rem;">Lass uns reden.<br/><em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--copper)">Am liebsten über einen echten Text.</em></h2>
+    <p>Ich zeige dir nicht, was ich kann — ich zeige es dir an einem Text für einen deiner Kunden.</p>
+
+    <div style="margin-top:2.5rem;">
+      <a href="mailto:andre.schwarz1@t-online.de" class="btn-primary">E-Mail schreiben</a>
+    </div>
+
+    <div class="contact-links">
+      <a href="tel:+4915256044541" class="contact-link">01525 6044541</a>
+      <a href="mailto:andre.schwarz1@t-online.de" class="contact-link">andre.schwarz1@t-online.de</a>
+      <a href="lebenslauf.html" class="contact-link">Lebenslauf</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>André Schwarz · Am Lausberg 8 · 60435 Frankfurt am Main</span>
+    <a href="lebenslauf.html">Lebenslauf</a>
+  </footer>
+
+  <script>
+    // ── TYPEWRITER ──
+    const headline = document.getElementById('headline');
+    const text = "Ich kenne die Regeln nicht alle beim Namen. Aber ich fühle, wann ein Text hält\u00A0— so wie dieser hier. Das bewusst zu machen, würde ich gern bei dir lernen.";
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    headline.appendChild(cursor);
+
+    function type() {
+      if (i < text.length) {
+        headline.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+        const delay = text[i-1] === '.' || text[i-1] === '—' ? 420 : (text[i-1] === ',' ? 180 : 38);
+        setTimeout(type, delay);
+      } else {
+        // Remove cursor after short pause
+        setTimeout(() => cursor.style.display = 'none', 1800);
+      }
+    }
+
+    // Start after brief delay
+    setTimeout(type, 600);
+
+    // ── SCROLL REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
