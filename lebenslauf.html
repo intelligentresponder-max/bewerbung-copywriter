@@ -32,6 +32,25 @@
     background: var(--black);
     color: var(--paper);
     padding: 48px 64px 40px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .cv-header-content { flex: 1; }
+  .cv-header-photo {
+    flex-shrink: 0;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--copper);
+    overflow: hidden;
+    box-shadow: 0 0 0 6px rgba(184,115,51,0.18);
+  }
+  .cv-header-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
   .cv-header-eyebrow {
     font-family: 'Inter', sans-serif;
@@ -234,7 +253,8 @@
   .cv-footer a { color: var(--copper); text-decoration: none; }
 
   @media (max-width: 768px) {
-    .cv-header { padding: 32px 24px 28px; }
+    .cv-header { padding: 32px 24px 28px; flex-direction: column-reverse; gap: 20px; align-items: flex-start; }
+    .cv-header-photo { width: 90px; height: 90px; }
     .cv-header h1 { font-size: 30px; }
     .cv-body { grid-template-columns: 1fr; }
     .cv-main { padding: 32px 24px; border-right: none; }
@@ -256,14 +276,19 @@
 
 <!-- HEADER -->
 <header class="cv-header">
-  <p class="cv-header-eyebrow">Copywriter · Frankfurt am Main · 2026</p>
-  <h1>André Schwarz</h1>
-  <p class="cv-header-subtitle">Texter. Ghostwriter. Einer, der zuhört.</p>
-  <div class="cv-header-contacts">
-    <span>Am Lausberg 8, 60435 Frankfurt am Main</span>
-    <a href="mailto:andre.schwarz1@t-online.de">andre.schwarz1@t-online.de</a>
-    <a href="tel:+4915256044541">01525 6044541</a>
-    <a href="https://intelligentresponder-max.github.io/texter-portfolio/">Portfolio</a>
+  <div class="cv-header-content">
+    <p class="cv-header-eyebrow">Copywriter · Frankfurt am Main · 2026</p>
+    <h1>André Schwarz</h1>
+    <p class="cv-header-subtitle">Texter. Ghostwriter. Einer, der zuhört.</p>
+    <div class="cv-header-contacts">
+      <span>Am Lausberg 8, 60435 Frankfurt am Main</span>
+      <a href="mailto:andre.schwarz1@t-online.de">andre.schwarz1@t-online.de</a>
+      <a href="tel:+4915256044541">01525 6044541</a>
+      <a href="https://intelligentresponder-max.github.io/texter-portfolio/">Portfolio</a>
+    </div>
+  </div>
+  <div class="cv-header-photo">
+    <img src="andre_portrait.jpg" alt="André Schwarz">
   </div>
 </header>
 
